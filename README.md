@@ -15,7 +15,7 @@ pyproject.toml      <-- Python project configuration file (including dependencie
 Dockerfile          <-- Dockerfile for building the application image
 doover_config.json  <-- Configuration file for doover
 
-src/sia_local_control/   <-- Application directory
+src/sia_local_control_ui/   <-- Application directory
   application.py    <-- Main application code
   app_config.py     <-- Config schema definition
   app_ui.py         <-- UI code (if applicable)

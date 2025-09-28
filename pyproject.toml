@@ -1,5 +1,5 @@
 [project]
-name = "sia-local-control"
+name = "sia-local-control-ui"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,11 +7,14 @@ requires-python = ">=3.11"
 dependencies = [
     "pydoover>=0.4.13",
     "transitions>=0.9.2",
+    "flask>=3.0.0",
+    "flask-socketio>=5.3.0",
+    "python-socketio>=5.9.0",
 ]
 
 [project.scripts]
-doover-app-run = "sia_local_control:main"
-export-config = "sia_local_control.app_config:export"
+doover-app-run = "sia_local_control_ui:main"
+export-config = "sia_local_control_ui.app_config:export"
 
 [build-system]
 requires = ["hatchling"]
