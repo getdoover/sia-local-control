@@ -170,5 +170,5 @@ class SiaLocalControlUiApplication(Application):
             tank_level_percent=tank_level_percent
         )
         
-        system_status = "running" if self.state.state == "on" else "standby"
-        self.dashboard_interface.update_system_status(system_status)
+        # system_status = "running" if self.state.state == "on" else "standby"
+        # self.dashboard_interface.update_system_status(system_status)
