@@ -127,8 +127,8 @@ class SiaLocalControlUiApplication(Application):
         )
         
         # Get tank control data from simulators
-        tank_level_mm = self.get_tag("tank_level_mm", self.config.tank_level_app.value) if self.config.tank_apps else 1250.0
-        tank_level_percent = self.get_tag("tank_level_percent", self.config.tank_level_app.value) if self.config.tank_apps else 62.5
+        tank_level_mm = self.get_tag("tank_level_mm", self.config.tank_level_app.value) if self.config.tank_level_app.value else 1250.0
+        tank_level_percent = self.get_tag("tank_level_percent", self.config.tank_level_app.value) if self.config.tank_level_app.value else 62.5
         
         # Update tank data
         self.dashboard_interface.update_tank_data(
