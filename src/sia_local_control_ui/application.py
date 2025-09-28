@@ -93,10 +93,24 @@ class SiaLocalControlUiApplication(Application):
                     battery_ah_values.append(r)
             
             # Aggregate data: average voltages/percentages, sum battery_ah
-            battery_voltage = sum(battery_voltages) / len(battery_voltages)
-            battery_percentage = sum(battery_percentages) / len(battery_percentages)
-            panel_power = sum(panel_power_values) / len(panel_power_values)
-            battery_ah = sum(battery_ah_values)
+            if len(battery_voltages) > 0:
+                battery_voltage = sum(battery_voltages) / len(battery_voltages)
+            else:
+                battery_voltage = 0.0
+            if len(battery_percentages) > 0:
+                battery_percentage = sum(battery_percentages) / len(battery_percentages)
+            else:
+                battery_percentage = 0.0
+            if len(panel_power_values) > 0:
+                panel_power = sum(panel_power_values) / len(panel_power_values)
+            else:
+                panel_power = 0.0
+            
+            if len(battery_ah_values) > 0:
+                battery_ah = sum(battery_ah_values) 
+            else:
+                battery_ah = 0.0
+            
         else:
             # Fallback values if no solar controllers configured
             battery_voltage = 24.5
