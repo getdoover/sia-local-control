@@ -41,9 +41,9 @@ class SiaLocalControlUiApplication(Application):
         """Update dashboard with data from various sources."""
         # try:
             # Get pump control data from simulators
-        target_rate = self.get_tag("TargetRate", self.config.pump_controllers.elements[0]) if self.config.pump_controllers else 15.5
-        flow_rate = self.get_tag("FlowRate", self.config.pump_controllers.elements[0]) if self.config.pump_controllers else 14.2
-        pump_state = self.get_tag("StateString", self.config.pump_controllers.elements[0]) if self.config.pump_controllers else "auto"
+        target_rate = self.get_tag("TargetRate", self.config.pump_controllers.elements[0].value) if self.config.pump_controllers else 15.5
+        flow_rate = self.get_tag("FlowRate", self.config.pump_controllers.elements[0].value) if self.config.pump_controllers else 14.2
+        pump_state = self.get_tag("StateString", self.config.pump_controllers.elements[0].value) if self.config.pump_controllers else "auto"
         
         # Update pump data
         self.dashboard_interface.update_pump_data(
@@ -54,9 +54,9 @@ class SiaLocalControlUiApplication(Application):
         
         # Get pump 2 control data from simulators
         if len(self.config.pump_controllers.elements) > 1:
-            pump2_target_rate = self.get_tag("TargetRate", self.config.pump_controllers.elements[1])
-            pump2_flow_rate = self.get_tag("FlowRate", self.config.pump_controllers.elements[1])
-            pump2_pump_state = self.get_tag("StateString", self.config.pump_controllers.elements[1])
+            pump2_target_rate = self.get_tag("TargetRate", self.config.pump_controllers.elements[1].value)
+            pump2_flow_rate = self.get_tag("FlowRate", self.config.pump_controllers.elements[1].value)
+            pump2_pump_state = self.get_tag("StateString", self.config.pump_controllers.elements[1].value)
         else:
             # Fallback values for pump 2 if not configured
             pump2_target_rate = "-"
@@ -79,16 +79,16 @@ class SiaLocalControlUiApplication(Application):
             
             # Collect data from all solar controllers
             for solar_controller in self.config.solar_controllers.elements:
-                r = self.get_tag("b_voltage", solar_controller)
+                r = self.get_tag("b_voltage", solar_controller.value)
                 if r is not None:
                     battery_voltages.append(r)
-                r = self.get_tag("b_percent", solar_controller)
+                r = self.get_tag("b_percent", solar_controller.value)
                 if r is not None:
                     battery_percentages.append(r)
-                r = self.get_tag("panel_power", solar_controller)
+                r = self.get_tag("panel_power", solar_controller.value)
                 if r is not None:
                     panel_power_values.append(r)
-                r = self.get_tag("remaining_ah", solar_controller)
+                r = self.get_tag("remaining_ah", solar_controller.value)
                 if r is not None:
                     battery_ah_values.append(r)
             
