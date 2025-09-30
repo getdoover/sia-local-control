@@ -125,8 +125,9 @@ class SiaLocalControlUiApplication(Application):
         )
         
         # Get tank control data from simulators
-        tank_level_mm = self.get_tag("tank_level_mm", self.config.tank_level_app.value) if self.config.tank_level_app.value else 1250.0
-        tank_level_percent = self.get_tag("tank_level_percent", self.config.tank_level_app.value) if self.config.tank_level_app.value else 62.5
+        tank_level_m = self.get_tag("level_reading", self.config.tank_level_app.value) if self.config.tank_level_app.value else 1250.0
+        tank_level_mm = tank_level_m * 1000
+        tank_level_percent = self.get_tag("level_filled_percentage", self.config.tank_level_app.value) if self.config.tank_level_app.value else 62.5
         
         # Update tank data
         self.dashboard_interface.update_tank_data(
@@ -135,8 +136,8 @@ class SiaLocalControlUiApplication(Application):
         )
         
         self.dashboard_interface.update_skid_data(
-            flow_rate=self.get_tag("value", self.config.flow_sensor_app.value),
-            pressure=self.get_tag("value", self.config.pressure_sensor_app.value)
+            skid_flow=self.get_tag("value", self.config.flow_sensor_app.value),
+            skid_pressure=self.get_tag("value", self.config.pressure_sensor_app.value)
         )
             
             # Update system status
