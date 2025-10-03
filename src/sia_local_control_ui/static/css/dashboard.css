@@ -213,7 +213,7 @@ body {
 }
 
 .state-value.standby { background: #95a5a6; color: white; }
-.state-value.auto { background: #27ae60; color: white; }
+.state-value.pumping { background: #27ae60; color: white; }
 .state-value.calibration { background: #f39c12; color: white; }
 
 /* State controls */
