@@ -26,6 +26,11 @@ class Dashboard {
         this.flowRate = document.getElementById('flow-rate').querySelector('.value');
         this.pumpState = document.getElementById('pump-state').querySelector('.state-value');
         
+        // Pump 2 controls
+        this.targetRate2 = document.getElementById('target-rate-2').querySelector('.value');
+        this.flowRate2 = document.getElementById('flow-rate-2').querySelector('.value');
+        this.pumpState2 = document.getElementById('pump-state-2').querySelector('.state-value');
+        
         // Solar controls
         this.batteryVoltage = document.getElementById('battery-voltage').querySelector('.value');
         this.batteryPercentage = document.getElementById('battery-percentage').querySelector('.value');
@@ -137,6 +142,11 @@ class Dashboard {
             this.updatePumpData(data.pump);
         }
         
+        // Update pump 2 data
+        if (data.pump2) {
+            this.updatePump2Data(data.pump2);
+        }
+        
         // Update solar data
         if (data.solar) {
             this.updateSolarData(data.solar);
@@ -172,6 +182,23 @@ class Dashboard {
         // Update pump state
         if (pumpData.pump_state !== undefined) {
             this.updatePumpState(pumpData.pump_state);
+        }
+    }
+    
+    updatePump2Data(pump2Data) {
+        // Update target rate
+        if (pump2Data.target_rate !== undefined) {
+            this.animateValueChange(this.targetRate2, pump2Data.target_rate.toFixed(1));
+        }
+        
+        // Update flow rate
+        if (pump2Data.flow_rate !== undefined) {
+            this.animateValueChange(this.flowRate2, pump2Data.flow_rate.toFixed(1));
+        }
+        
+        // Update pump state
+        if (pump2Data.pump_state !== undefined) {
+            this.updatePump2State(pump2Data.pump_state);
         }
     }
     
@@ -244,6 +271,14 @@ class Dashboard {
                 btn.classList.add('active');
             }
         });
+    }
+    
+    updatePump2State(state) {
+        this.pumpState2.textContent = state;
+        this.pumpState2.className = `state-value ${state}`;
+        
+        // Note: If pump2 has its own control buttons, you would update them here
+        // For now, pump2 state is display-only
     }
     
     updateProgressBar(progressBar, percentage) {
