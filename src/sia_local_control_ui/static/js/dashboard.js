@@ -171,12 +171,12 @@ class Dashboard {
     updatePumpData(pumpData) {
         // Update target rate
         if (pumpData.target_rate !== undefined) {
-            this.animateValueChange(this.targetRate, pumpData.target_rate.toFixed(1));
+            this.updateValueChange(this.targetRate, pumpData.target_rate.toFixed(1));
         }
         
         // Update flow rate
         if (pumpData.flow_rate !== undefined) {
-            this.animateValueChange(this.flowRate, pumpData.flow_rate.toFixed(1));
+            this.updateValueChange(this.flowRate, pumpData.flow_rate.toFixed(1));
         }
         
         // Update pump state
@@ -188,12 +188,12 @@ class Dashboard {
     updatePump2Data(pump2Data) {
         // Update target rate
         if (pump2Data.target_rate !== undefined) {
-            this.animateValueChange(this.targetRate2, pump2Data.target_rate.toFixed(1));
+            this.updateValueChange(this.targetRate2, pump2Data.target_rate.toFixed(1));
         }
         
         // Update flow rate
         if (pump2Data.flow_rate !== undefined) {
-            this.animateValueChange(this.flowRate2, pump2Data.flow_rate.toFixed(1));
+            this.updateValueChange(this.flowRate2, pump2Data.flow_rate.toFixed(1));
         }
         
         // Update pump state
@@ -229,13 +229,13 @@ class Dashboard {
     updateTankData(tankData) {
         // Update tank level in mm
         if (tankData.tank_level_mm !== undefined) {
-            this.animateValueChange(this.tankLevelMm, Math.round(tankData.tank_level_mm).toString());
+            this.updateValueChange(this.tankLevelMm, Math.round(tankData.tank_level_mm).toString());
         }
         
         // Update tank level percentage
         if (tankData.tank_level_percent !== undefined) {
             const percentage = Math.round(tankData.tank_level_percent);
-            this.animateValueChange(this.tankLevelPercent, percentage.toString());
+            this.updateValueChange(this.tankLevelPercent, percentage.toString());
             this.updateProgressBar(this.tankProgress, percentage);
         }
     }
@@ -243,12 +243,12 @@ class Dashboard {
     updateSkidData(skidData) {
         // Update skid flow
         if (skidData.skid_flow !== undefined) {
-            this.animateValueChange(this.skidFlow, skidData.skid_flow.toFixed(1));
+            this.updateValueChange(this.skidFlow, skidData.skid_flow.toFixed(1));
         }
         
         // Update skid pressure
         if (skidData.skid_pressure !== undefined) {
-            this.animateValueChange(this.skidPressure, skidData.skid_pressure.toFixed(1));
+            this.updateValueChange(this.skidPressure, skidData.skid_pressure.toFixed(1));
         }
     }
     
@@ -307,6 +307,12 @@ class Dashboard {
             setTimeout(() => {
                 element.classList.remove('updating');
             }, 1000);
+        }
+    }
+
+    updateValueChange(element, newValue) {
+        if (element.textContent !== newValue) {
+            element.textContent = newValue;
         }
     }
     
