@@ -171,12 +171,12 @@ class Dashboard {
     updatePumpData(pumpData) {
         // Update target rate
         if (pumpData.target_rate !== undefined) {
-            this.updateValueChange(this.targetRate, pumpData.target_rate.toFixed(1));
+            this.updateValueChange(this.targetRate, pumpData.target_rate.toFixed(2));
         }
         
         // Update flow rate
         if (pumpData.flow_rate !== undefined) {
-            this.updateValueChange(this.flowRate, pumpData.flow_rate.toFixed(1));
+            this.updateValueChange(this.flowRate, pumpData.flow_rate.toFixed(2));
         }
         
         // Update pump state
@@ -188,12 +188,12 @@ class Dashboard {
     updatePump2Data(pump2Data) {
         // Update target rate
         if (pump2Data.target_rate !== undefined) {
-            this.updateValueChange(this.targetRate2, pump2Data.target_rate.toFixed(1));
+            this.updateValueChange(this.targetRate2, pump2Data.target_rate.toFixed(2));
         }
         
         // Update flow rate
         if (pump2Data.flow_rate !== undefined) {
-            this.updateValueChange(this.flowRate2, pump2Data.flow_rate.toFixed(1));
+            this.updateValueChange(this.flowRate2, pump2Data.flow_rate.toFixed(2));
         }
         
         // Update pump state
